@@ -1,28 +1,39 @@
 <?php
+
 namespace app\libraries;
 /*
  * App Core Class
  * Creates url and loads core controller
  * URL FORMAT - /controller/method/params
  */
-class Core {
+class Core
+{
     protected $controllersNamespace = 'app\\controllers\\';
     protected $currentController = 'Pages';
     protected $currentMethod = 'index';
     protected $params = [];
 
-    public function __construct() {
-        
+    public function __construct()
+    {
+
         $url = $this->getUrl();
 
         //look in controllers for first value in $url array
         if (file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
-            
+
             //if exists, set as controller
             $this->currentController = ucwords($url[0]);
 
             //Unset 0 index
             unset($url[0]);
+        } elseif ($url[0]<>'') {
+            http_response_code(404);
+            $data = [
+                'err_number' => '404',
+                'err_message' => 'Page not found!'
+            ];
+            require_once(APPROOT . '../views/pages/error.php');
+            die();
         }
 
         //Require the controller
@@ -41,6 +52,13 @@ class Core {
                 //unset 1 undex
                 unset($url[1]);
 
+            } else{
+                http_response_code(404);
+                $data = [
+                    'err_number' => '404',
+                    'err_message' => 'Page not found!'
+                ];
+                require_once(APPROOT . '../views/pages/error.php');
             }
         }
 
@@ -48,19 +66,30 @@ class Core {
         $this->params = $url ? array_values($url) : [];
 
         // Call a callback with array of params
-        call_user_func_array(
-            [
-                $this->currentController,
-                $this->currentMethod
-            ],
-            $this->params
+        if (method_exists($this->currentController, $this->currentMethod)) {
+            call_user_func_array(
+                [
+                    $this->currentController,
+                    $this->currentMethod
+                ],
+                $this->params
             );
+        } else {
+            http_response_code(404);
+            $data = [
+                'err_number' => '404',
+                'err_message' => 'Page not found!'
+            ];
+            require_once(APPROOT . '../views/pages/error.php');
+        }
+
     }
 
-    public function getUrl() {
+    public function getUrl()
+    {
         if (isset($_GET['url'])) {
-            $url = rtrim($_GET['url'], '/');   
-            $url = filter_var($url, FILTER_SANITIZE_URL);  
+            $url = rtrim($_GET['url'], '/');
+            $url = filter_var($url, FILTER_SANITIZE_URL);
             $url = explode('/', $url);
             return $url;
         }

@@ -1,0 +1,44 @@
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mb-30 {
+    margin-bottom: 30px;
+}
+
+.mb-40 {
+    margin-bottom: 40px;
+}
+
+.mb-50 {
+    margin-bottom: 50px;
+}
+
+.mb-60 {
+    margin-bottom: 60px;
+}
+
+.mb-70 {
+    margin-bottom: 70px;
+}
+
+.error-container {
+    height: 100%;
+    background-color: #cccccc;
+}
+
+.error-container > .row {
+    height: 100%;
+}
+
+.error-container > .row > div {
+    text-align: center;
+}
+
+label > sup {
+    color: red;
+}

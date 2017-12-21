@@ -1,3 +1,7 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-3"><?= $data['title'] ?></h1>
+        <p class="lead"><?= $data['description'] ?></p>
+    </div>
+</div>
 
-<h1><?= $data['title'] ?></h1>
-<p>This is KanmirMVC PHP framework. Please refer to the docs on how to use it</p>

@@ -12,6 +12,8 @@ define('APPROOT', dirname(dirname(__FILE__)));
 //URL Root
 define('URLROOT', baseUrl());
 //Site name
-define('SITENAME', 'KanmirMVC');
+define('SITENAME', 'SharePosts');
 //App language
 define('APPLANG', 'en');
+//App version
+define('APPVERSION', '1.0.0');
