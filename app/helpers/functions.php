@@ -1,7 +1,7 @@
 <?php
-//Some usefull functions
+// Some usefull functions
 
-//Return base url
+// Return base url
 function baseUrl()
 {
     return sprintf(
@@ -15,3 +15,4 @@ function baseUrl()
 function redirect($url) {
     header('location: ' . URLROOT . '/' . $url);
 }
+

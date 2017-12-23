@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-6 mx-auto">
         <div class="card card-body bg-light mt-5">
+            <?php echo flash('register_success') ?>
             <h2>Login</h2>
             <p class="lead">Please fill out this form to login</p>
             <form action="/users/login" method="post">
