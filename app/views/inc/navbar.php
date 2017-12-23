@@ -10,6 +10,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
                 </li>
+                <?php
+                if (isLoggedIn()):
+                ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="/posts/"><i class="fa fa-clone" aria-hidden="true"></i> Posts</a>
+                </li>
+                <?php endif; ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/pages/about"><i class="fa fa-bars" aria-hidden="true"></i> About</a>
                 </li>
@@ -17,7 +24,7 @@
 
             <ul class="navbar-nav ml-auto">
                 <?php
-                if (isset($_SESSION['user_id'])):
+                if (isLoggedIn()):
                     ?>
                     <li class="nav-item">
                         <a class="nav-link" href="/users/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>
